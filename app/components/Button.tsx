@@ -9,7 +9,7 @@ interface ButtonProp {
   outlined?: boolean;
   custom?: string;
   Icon?: IconType;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onclick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
@@ -19,10 +19,11 @@ const Button = ({
   custom,
   Icon,
   small,
-  onClick,
+  onclick,
 }: ButtonProp) => {
   return (
     <button
+    onClick={onclick}
       disabled={disabled}
       className={`
   disabled:opacity-70 disabled:cursor-not-allowed rounded-md
