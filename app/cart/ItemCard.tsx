@@ -6,12 +6,18 @@ import Link from "next/link";
 import { truncateText } from "@/utils/truncate";
 import Image from "next/image";
 import { SetQuantity } from "../components/products/SetQuantity";
+import { useCart } from "@/hooks/useCart";
 
 interface ItemCardProps {
   item: CartProductType;
 }
 
 const ItemCard = ({ item }: ItemCardProps) => {
+  const {
+    handleRemoveFromCart,
+    handleCartProductQuantityInc,
+    handleCartProductQuantityDec,
+  } = useCart();
   return (
     <div
       className="
@@ -38,24 +44,30 @@ const ItemCard = ({ item }: ItemCardProps) => {
           <Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
           <div>{item.selectedImg.color}</div>
           <div className="w-[70px]">
-            <button className="text-slate-500 underline" onClick={() => {}}>
+            <button
+              className="text-slate-500 underline"
+              onClick={() => handleRemoveFromCart(item)}
+            >
               Remove
             </button>
           </div>
         </div>
       </div>
-      
-        <div className="font-semibold justify-self-center">
-          {formatPrice(item.price)}
-        </div>
-        <div className="font-semibold justify-self-center">
-          <SetQuantity cartCounter={true} cartProduct={item} handleQuantityIncrease={() =>{}} 
-          handleQuantityDecrease={() => {}}
-          />
-        </div>
-        <div className="font-semibold justify-self-end">
-            {formatPrice(item.price * item.quantity)}
-        </div>
+
+      <div className="font-semibold justify-self-center">
+        {formatPrice(item.price)}
+      </div>
+      <div className="font-semibold justify-self-center">
+        <SetQuantity
+          cartCounter={true}
+          cartProduct={item}
+          handleQuantityIncrease={() => handleCartProductQuantityInc(item)}
+          handleQuantityDecrease={() => handleCartProductQuantityDec(item)}
+        />
+      </div>
+      <div className="font-semibold justify-self-end">
+        {formatPrice(item.price * item.quantity)}
+      </div>
     </div>
   );
 };

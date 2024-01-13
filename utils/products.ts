@@ -23,46 +23,46 @@ export const products = [
       ],
       reviews: [],
     },
-    {
-      id: "64a4ebe300900d44bb50628a",
-      name: "Logitech MX Keys Advanced Wireless Illuminated Keyboard, Tactile Responsive Typing, Backlighting, Bluetooth, USB-C, Apple macOS, Microsoft Windows, Linux, iOS, Android, Metal Build (Black)",
-      description:
-        "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
-      price: 102.99,
-      brand: "logitech",
-      category: "Accesories",
-      inStock: true,
-      images: [
-        {
-          color: "Black",
-          colorCode: "#000000",
-          image:
-            "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
-        },
-      ],
-      reviews: [
-        {
-          id: "64a65a6158b470c6e06959ee",
-          userId: "6475af156bad4917456e6e1e",
-          productId: "64a4ebe300900d44bb50628a",
-          rating: 5,
-          comment: "good",
-          createdDate: "2023-07-06T06:08:33.067Z",
-          user: {
-            id: "6475af156bad4917456e6e1e",
-            name: "Charles",
-            email: "example@gmail.com",
-            emailVerified: null,
-            image:
-              "https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
-            hashedPassword: null,
-            createdAt: "2023-05-30T08:08:53.979Z",
-            updatedAt: "2023-05-30T08:08:53.979Z",
-            role: "ADMIN",
-          },
-        },
-      ],
-    },
+    // {
+    //   id: "64a4ebe300900d44bb50628a",
+    //   name: "Logitech MX Keys Advanced Wireless Illuminated Keyboard, Tactile Responsive Typing, Backlighting, Bluetooth, USB-C, Apple macOS, Microsoft Windows, Linux, iOS, Android, Metal Build (Black)",
+    //   description:
+    //     "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
+    //   price: 102.99,
+    //   brand: "logitech",
+    //   category: "Accesories",
+    //   inStock: true,
+    //   images: [
+    //     {
+    //       color: "Black",
+    //       colorCode: "#000000",
+    //       image:
+    //         "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
+    //     },
+    //   ],
+    //   reviews: [
+    //     {
+    //       id: "64a65a6158b470c6e06959ee",
+    //       userId: "6475af156bad4917456e6e1e",
+    //       productId: "64a4ebe300900d44bb50628a",
+    //       rating: 5,
+    //       comment: "good",
+    //       createdDate: "2023-07-06T06:08:33.067Z",
+    //       user: {
+    //         id: "6475af156bad4917456e6e1e",
+    //         name: "Charles",
+    //         email: "example@gmail.com",
+    //         emailVerified: null,
+    //         image:
+    //           "https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
+    //         hashedPassword: null,
+    //         createdAt: "2023-05-30T08:08:53.979Z",
+    //         updatedAt: "2023-05-30T08:08:53.979Z",
+    //         role: "ADMIN",
+    //       },
+    //     },
+    //   ],
+    // },
     {
       id: "648437b38c44d52b9542e340",
       name: "Apple iPhone 12, 64GB",
@@ -136,25 +136,25 @@ export const products = [
         },
       ],
     },
-    {
-      id: "64a4e9e77e7299078334019f",
-      name: "Logitech MX Master 2S Wireless Mouse – Use on Any Surface, Hyper-Fast Scrolling, Ergonomic Shape, Rechargeable, Control Upto 3 Apple Mac and Windows Computers, Graphite",
-      description:
-        "Cross computer control: Game changing capacity to navigate seamlessly on 3 computers, and copy paste text, images, and files from 1 to the other using Logitech flow\nDual connectivity: Use with upto 3 Windows or Mac computers via included Unifying receiver or Bluetooth Smart wireless technology. Gesture button- Yes",
-      price: 70,
-      brand: "logitech",
-      category: "Accesories",
-      inStock: true,
-      images: [
-        {
-          color: "Graphite",
-          colorCode: " #383838",
-          image:
-            "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
-        },
-      ],
-      reviews: [],
-    },
+    // {
+    //   id: "64a4e9e77e7299078334019f",
+    //   name: "Logitech MX Master 2S Wireless Mouse – Use on Any Surface, Hyper-Fast Scrolling, Ergonomic Shape, Rechargeable, Control Upto 3 Apple Mac and Windows Computers, Graphite",
+    //   description:
+    //     "Cross computer control: Game changing capacity to navigate seamlessly on 3 computers, and copy paste text, images, and files from 1 to the other using Logitech flow\nDual connectivity: Use with upto 3 Windows or Mac computers via included Unifying receiver or Bluetooth Smart wireless technology. Gesture button- Yes",
+    //   price: 70,
+    //   brand: "logitech",
+    //   category: "Accesories",
+    //   inStock: true,
+    //   images: [
+    //     {
+    //       color: "Graphite",
+    //       colorCode: " #383838",
+    //       image:
+    //         "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
+    //     },
+    //   ],
+    //   reviews: [],
+    // }
     {
       id: "649d775128b6744f0f497040",
       name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
