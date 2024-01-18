@@ -20,8 +20,7 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -34,11 +33,50 @@ model User {
   image          String?
   hashedPassword String?
   createdAt      DateTime  @default(now())
-  updatedAT      DateTime  @updatedAt
+  updatedAt      DateTime  @updatedAt
   role           Role      @default(USER)
   accounts       Account[]
+  orders        Order[]
 }
 
+model Order {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String            @db.ObjectId
+  amount          Float
+  currency        String
+  status          String
+  deliveryStatus  String?
+  createdDate     DateTime          @default(now())
+  paymentIntendId String            @unique
+  products        CartProductType[]
+  address         Address?
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+type CartProductType {
+  id          String
+  name        String
+  description String
+  category    String
+  brand       String
+  selectedImg Image
+  quantity    Int
+  price       Float
+}
+
+type Image {
+  color String
+  colorCode String
+  image String
+}
+type Address{
+  city String
+  country String
+  address_1 String
+  address_2 String
+  postal_code String
+  state String
+}
 enum Role {
   USER
   ADMIN

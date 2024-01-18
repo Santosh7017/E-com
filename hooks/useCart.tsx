@@ -68,7 +68,7 @@ export const CartContextProvider = (props: Props) => {
       } else {
         updatedCart = [product];
       }
-      console.log("handleAddProductCart called");
+     
 
       toast.success("Product added to cart");
       localStorage.setItem("cartItems", JSON.stringify(updatedCart));
