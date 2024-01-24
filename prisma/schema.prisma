@@ -36,21 +36,47 @@ model User {
   updatedAt      DateTime  @updatedAt
   role           Role      @default(USER)
   accounts       Account[]
-  orders        Order[]
+  orders         Order[]
+  reviews     Review[]
 }
 
 model Order {
   id              String            @id @default(auto()) @map("_id") @db.ObjectId
-  userId           String            @db.ObjectId
+  userId          String            @db.ObjectId
   amount          Float
   currency        String
   status          String
   deliveryStatus  String?
   createdDate     DateTime          @default(now())
-  paymentIntendId String            @unique
+  paymentIntentId String            @unique
   products        CartProductType[]
   address         Address?
   user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description String
+  price Float
+  brand String
+  category String
+  inStock Boolean
+  images Image[]
+  reviews Review[]
+}
+
+model Review {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  productId String @db.ObjectId
+  rating Int
+  comment String
+  createdDate DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 type CartProductType {
@@ -65,18 +91,20 @@ type CartProductType {
 }
 
 type Image {
-  color String
+  color     String
   colorCode String
-  image String
+  image     String
 }
-type Address{
-  city String
-  country String
-  address_1 String
-  address_2 String
+
+type Address {
+  city        String 
+  country     String
+  line1   String
+  line2   String
   postal_code String
-  state String
+  state       String
 }
+
 enum Role {
   USER
   ADMIN

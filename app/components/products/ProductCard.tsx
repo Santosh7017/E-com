@@ -39,7 +39,7 @@ const ProductCard = ( {data}:PdoductCardProps) => {
         <div>
             <Rating value={productRating} readOnly precision={0.5} />
         </div>
-        <div>{data.reviews.length}reviews</div>
+        <div>{data.reviews.length + " "} reviews</div>
         <div className="font-semibold">{formatPrice(data.price)}</div>
         <div></div>
       </div>

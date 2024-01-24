@@ -6,9 +6,17 @@ import Heading from "../components/Heading";
 import Button from "../components/Button";
 import ItemCard from "./ItemCard";
 import { formatPrice } from "@/utils/formatPrice";
+import { useRouter } from "next/navigation";
+import { safeUser } from "@/types";
 
-const CartClient = () => {
+interface CartClinetProp {
+  currentUser: safeUser | null
+}
+
+const CartClient: React.FC<CartClinetProp > = ({ currentUser }) => {
+
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
+  const router = useRouter();
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -57,7 +65,11 @@ const CartClient = () => {
           <p className="text-slate-500">
             Taxes and Shipping Calculated at Checkout
           </p>
-          <Button label="Checkout" onclick={() => {}} />
+          <Button label={currentUser? "Checkout": "Login to Checkout"} onclick={() => {
+            currentUser? router.push('/checkout') : router.push('/login')
+          }} 
+          outlined={currentUser? false: true}
+          />
           <Link
             href={"/"}
             className="text-slate-500 

@@ -1,6 +1,6 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import Container from "../components/Container"
-import FormWrap from "../components/products/FormWrap"
+import FormWrap from "../components/FormWrap"
 import LoginForm from "./LoginForm"
 
 const Login =  async () => {
