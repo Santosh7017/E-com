@@ -11,7 +11,7 @@ import firebaseApp from "@/libs/firebase";
 import { categories } from "@/utils/Categories";
 import { Colors } from "@/utils/Colors";
 import { useCallback, useEffect, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, set, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
   getDownloadURL,
@@ -20,6 +20,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export type ImageType = {
   color: string;
@@ -54,6 +55,7 @@ const AddProductForm = () => {
       price: "",
     },
   });
+  const router = useRouter();
   console.log("images.............", images);
 
   useEffect(() => {
@@ -143,6 +145,15 @@ const AddProductForm = () => {
     const productData = { ...data, images: uploadedImages };
     axios.post('/api/product', productData).then(() => {
       toast.success('Product Created');
+      setIsProductCreated(true);
+      setIsLoading(false);
+      router.refresh();
+    }).catch((error) => {
+      toast.error('Error creating product');
+     
+      console.log('Error creating product', error);
+    }).finally(() => {
+        setIsLoading(false); 
     })
   };
 
