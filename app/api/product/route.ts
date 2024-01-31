@@ -1,6 +1,6 @@
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import prisma from '@/libs/prismadb'
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
 export async function POST(request:Request) {
@@ -26,4 +26,22 @@ if(!currentUser || currentUser.role != 'ADMIN'){
         }
     })
     return NextResponse.json(product)
+}
+
+export async function PUT(request:NextRequest) {
+    const currentUser = await getCurrentUser();
+
+    if(!currentUser || currentUser.role != 'ADMIN'){
+        return NextResponse.error();
+    }
+
+    const body = await request.json();
+    const {id, inStock} = body;
+    const product = await prisma.product.update({
+        where: {id: id},
+        data: {inStock}
+    });
+
+    return NextResponse.json(product); 
+    
 }

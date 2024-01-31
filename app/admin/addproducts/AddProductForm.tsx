@@ -56,7 +56,7 @@ const AddProductForm = () => {
     },
   });
   const router = useRouter();
-  console.log("images.............", images);
+ 
 
   useEffect(() => {
     setCustomvalue("images", images);
@@ -70,7 +70,7 @@ const AddProductForm = () => {
   }, [isProductCreated]);
 
   const onsubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Product data", data);
+    
     // ! upload images to firebase
 
     // ? add to mongodb

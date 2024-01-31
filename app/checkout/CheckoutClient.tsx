@@ -23,8 +23,7 @@ const CheckoutClient = () => {
 
   const router = useRouter();
 
-  // console.log("paymentIntent", paymentIntent);
-  // console.log("client secret", clientSecret);
+ 
 
   useEffect(() => {
     if (cartProducts) {
@@ -70,7 +69,7 @@ const CheckoutClient = () => {
         setPaymentSuccess(value)
   },[])
 
-  // console.log("payment status", paymentSuccess);
+
   
   return <div className="w-full">
        <div className="App">

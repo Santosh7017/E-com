@@ -39,9 +39,9 @@ export default async function handler(
   switch (event.type) {
     case "charge.succeeded":
       const charge = event.data.object as Stripe.Charge;
-          console.log("inside switch statement");
+        
           
-          console.log("this is charge", charge.shipping?.address);
+         
           
           
       if (typeof charge.payment_intent === "string") {
