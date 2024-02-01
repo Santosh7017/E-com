@@ -7,8 +7,10 @@ import getProducts from "@/actions/getProducts";
 const ManageProducts = async () => {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role != "ADMIN") {
-    return <NullData title="!!!Access denied" />;
+  if(!currentUser) return <NullData title="!!!Access denied" />;
+
+  if(currentUser.role !== 'ADMIN'){
+      return <NullData title="!!!Access denied" />
   }
   const products = await getProducts({ category: null });
 

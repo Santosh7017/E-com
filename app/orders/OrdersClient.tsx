@@ -19,13 +19,13 @@ import { useRouter } from "next/navigation";
 
 import moment from "moment";
 
-interface ManageOrdersClientProps {
+interface OrdersClientProps {
   Orders: ExtendedOrderType[];
 }
 type ExtendedOrderType = Order & {
   user: User;
 };
-const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
+const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
   
   const router = useRouter();
   let rows: any = [];
@@ -211,4 +211,4 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
   );
 };
 
-export default ManageOrdersClient;
+export default OrdersClient;

@@ -4,11 +4,12 @@ import NullData from "@/app/components/NullData";
 import ManageOrdersClient from "./ManageOrdersClient";
 import getOrders from "@/actions/getOrders";
 
-const ManageProducts = async () => {
+const ManageOrders = async () => {
   const currentUser = await getCurrentUser();
+  if(!currentUser) return <NullData title="!!!Access denied" />;
 
-  if (!currentUser || currentUser.role != "ADMIN") {
-    return <NullData title="!!!Access denied" />;
+  if(currentUser.role !== 'ADMIN'){
+      return <NullData title="!!!Access denied" />
   }
   const orders = await getOrders();
 
@@ -24,4 +25,4 @@ const ManageProducts = async () => {
   );
 };
 
-export default ManageProducts;
+export default ManageOrders;

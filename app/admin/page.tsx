@@ -5,7 +5,9 @@ const Admin = async () => {
 
     const currentUser = await getCurrentUser();
 
-    if(!currentUser || currentUser.role != 'ADMIN'){
+    if(!currentUser) return <NullData title="!!!Access denied" />;
+
+    if(currentUser.role !== 'ADMIN'){
         return <NullData title="!!!Access denied" />
     }
   return (
