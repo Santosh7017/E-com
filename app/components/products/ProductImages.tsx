@@ -1,6 +1,6 @@
 "use client";
 
-import { CartProductType, SelectedImgType } from "@/app/product/[productid]/ProductDetails";
+import { CartProductType, SelectedImgType } from "@/app/product/[productId]/ProductDetails";
 import Image from "next/image";
 
 interface ProductImageProps {

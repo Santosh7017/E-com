@@ -26,14 +26,12 @@ type ExtendedOrderType = Order & {
   user: User;
 };
 const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
-  
   const router = useRouter();
   let rows: any = [];
-  console
-  
+  console;
+
   if (Orders) {
     rows = Orders.map((order) => {
-     
       return {
         id: order.id,
         customer: order.user.name,
@@ -42,11 +40,8 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
         date: moment(order.createdDate).fromNow(),
         deliveryStatus: order.deliveryStatus,
       };
-      
     });
   }
-
-  
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 220 },
@@ -125,7 +120,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
         );
       },
     },
-    
+
     {
       field: "date",
       headerName: "Date",
@@ -139,14 +134,6 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
         return (
           <div className="flex justify-between gap-4 w-full">
             <ActionBtn
-              icon={MdDeliveryDining}
-              onclick={() => handleDispatch(params.row.id)}
-            />
-            <ActionBtn
-              icon={MdDone}
-              onclick={() => handleDeliver(params.row.id)}
-            />
-            <ActionBtn
               icon={MdRemoveRedEye}
               onclick={() => {
                 router.push(`/order/${params.row.id}`);
@@ -158,37 +145,8 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ Orders }) => {
     },
   ];
 
-  const handleDispatch = useCallback((id: string) => {
-    axios
-      .put("/api/orders", {
-        id,
-        deliveryStatus: "dispatched",
-      })
-      .then((res) => {
-        toast.success("Order dispatched");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error("Oops! Something went wrong");
-        console.log(error);
-      });
-  }, []);
+ 
 
-  const handleDeliver = useCallback((id: string) => {
-    axios
-      .put("/api/orders", {
-        id,
-        deliveryStatus: "delivered",
-      })
-      .then((res) => {
-        toast.success("Order Delivered");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error("Oops! Something went wrong");
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div className="max-w-[1150p] mb-auto text-xl">

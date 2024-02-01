@@ -1,4 +1,4 @@
-import { CartProductType } from "@/app/product/[productid]/ProductDetails";
+import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import {
   createContext,
   useCallback,
