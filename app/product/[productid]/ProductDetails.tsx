@@ -160,10 +160,13 @@ const ProductDetails: React.FC<ProductDetailsprops> = ({ product }) => {
             />
             <Horizontal />
             <div className="max-w-[300px]">
-              <Button
+              {product.inStock?(<Button
                 label="Add To Cart"
                 onclick={() => handleAddProductCart(cartProduct)}
-              />
+              />):(<Button
+                label="Out of Stock"
+                disabled
+              />)}
             </div>
           </div>
         )}

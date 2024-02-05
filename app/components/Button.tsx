@@ -9,7 +9,7 @@ interface ButtonProp {
   outlined?: boolean;
   custom?: string;
   Icon?: IconType;
-  onclick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onclick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({

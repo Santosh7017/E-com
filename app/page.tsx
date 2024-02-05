@@ -1,4 +1,3 @@
-import { products } from "@/utils/products";
 import Container from "./components/Container";
 import HomeBanner from "./components/footer/HomeBanner";
 import ProductCard from "./components/products/ProductCard";
@@ -10,6 +9,8 @@ interface HomePageProps {
 }
 
 export default async function Home({searchParams}: HomePageProps) {
+
+  
   const products = await getProducts(searchParams);
   if(products?.length === 0){
       return <NullData title="!! No Products Found. Click all To Clear Filter" />
