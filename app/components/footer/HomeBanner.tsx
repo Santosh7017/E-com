@@ -11,7 +11,7 @@ const HomeBanner = () => {
                 <p className="text-2xl md:text-5xl text-yellow-400 font-bold">GET 50% OFF</p>
             </div>
             <div className="w-1/3 relative aspect-video">
-                <Image src='/images/pngwing.png' alt="Banner Image"
+                <Image src='/banner/pngwing.png' alt="Banner Image"
                 className="object-contain "
                 quality={100}
                 fill

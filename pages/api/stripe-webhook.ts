@@ -41,6 +41,7 @@ export default async function handler(
       const charge = event.data.object as Stripe.Charge;
         
           
+         console.log("charge",charge);
          
           
           
