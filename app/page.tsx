@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import Container from "./components/Container";
 import HomeBanner from "./components/footer/HomeBanner";
 import ProductCard from "./components/products/ProductCard";

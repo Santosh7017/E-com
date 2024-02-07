@@ -3,6 +3,7 @@ import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import { getCurrentUser } from "@/actions/getCurrentUser";
+import Order from "@/app/order/[orderId]/page";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
@@ -20,12 +21,13 @@ const calculateOrderAmount = (items: CartProductType[]) => {
 export async function POST(request: Request) {
   const currentuser = await getCurrentUser();
   if (!currentuser) {
-    return NextResponse.json(
-      { error: "Unauthorized" },
-      {
-        status: 401,
-      }
-    );
+    // return NextResponse.json(
+    //   { error: "Unauthorized" },
+    //   {
+    //     status: 401,
+    //   }
+    // );
+    return NextResponse.error();
   }
   const body = await request.json();
   const { items, payment_intent_id } = body;
@@ -63,10 +65,11 @@ export async function POST(request: Request) {
       ]);
 
       if (!existing_order) {
-        return NextResponse.json(
-          { error: "Invalid Payment Intent" },
-          { status: 400 }
-        );
+        // return NextResponse.json(
+        //   { error: "Invalid Payment Intent" },
+        //   { status: 400 }
+        // );
+        return NextResponse.error();
       }
       return NextResponse.json({ paymentIntent: updated_intent });
     }
@@ -79,11 +82,12 @@ export async function POST(request: Request) {
     });
     //create the order
     orderData.paymentIntentId = paymentIntent.id;
-
+    
     await prisma.order.create({
       data: orderData,
     });
 
     return NextResponse.json({ paymentIntent });
   }
+  return NextResponse.error();
 }
