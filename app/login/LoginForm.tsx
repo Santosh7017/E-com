@@ -32,12 +32,11 @@ const LoginForm: React.FC<currentUser> = ({ currentUser }) => {
   const router = useRouter();
 
   useEffect(() => {
-      if(currentUser) {
-        router.push('/');
-        router.refresh();
-      }
-  }, [])
-
+    if (currentUser) {
+      router.push("/");
+      router.refresh();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -58,51 +57,68 @@ const LoginForm: React.FC<currentUser> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-
     return <p className="text-center">Logged In. Redirecting..</p>;
-  } 
-    return (
-      <>
-        <Heading title="Sign In for E-shop" />
-        <Button
-          outlined
-          label="Continue with Google"
-          Icon={AiOutlineGoogle}
-          onclick={() => {signIn('google')}}
-        />
-        <hr className="bg-slate-300 w-full h-px" />
+  }
 
-        <Input
-          id="email"
-          label="Email"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          type="email"
-          required
-        />
+  function handleForgot() {
+    toast.success("Check your email");
+
+
+
+  }
+  return (
+    <>
+      <Heading title="Sign In for E-shop" />
+      <Button
+        outlined
+        label="Continue with Google"
+        Icon={AiOutlineGoogle}
+        onclick={() => {
+          signIn("google");
+        }}
+      />
+      <hr className="bg-slate-300 w-full h-px" />
+
+      <Input
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        type="email"
+        required
+      />
+      <div className="w-full h-24">
         <Input
           id="password"
-          label="Name"
+          label="Password"
           disabled={isLoading}
           register={register}
           errors={errors}
           type="password"
           required
         />
+        <p className="text-md">
+          <Link className=" absolute right-96 mr-12 mt-3 mb-3" href="/reset">
+            Forgot Password
+          </Link>
+        </p>
+      </div>
+
+      <div style={{ width: "30vw" }}>
         <Button
           label={isLoading ? "Loading" : "Loign"}
           onclick={handleSubmit(onSubmit)}
         />
-        <p className="text-sm">
-          Do not have an account?{" "}
-          <Link className="underline" href="/register">
-            Signup
-          </Link>
-        </p>
-      </>
-    );
-  
+      </div>
+      <p className="text-sm">
+        Do not have an account?{" "}
+        <Link className="underline" href="/register">
+          Signup
+        </Link>
+      </p>
+    </>
+  );
 };
 
 export default LoginForm;

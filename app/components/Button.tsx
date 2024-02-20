@@ -10,6 +10,7 @@ interface ButtonProp {
   custom?: string;
   Icon?: IconType;
   onclick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
@@ -20,11 +21,13 @@ const Button = ({
   Icon,
   small,
   onclick,
+  onChange
 }: ButtonProp) => {
   return (
     <button
     onClick={onclick}
       disabled={disabled}
+      onChange={onChange}
       className={`
   disabled:opacity-70 disabled:cursor-not-allowed rounded-md
   hover:opacity-80 transition w-full border-slate-700 flex
