@@ -5,6 +5,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncate";
 import { Rating } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface PdoductCardProps {
@@ -65,9 +66,10 @@ const ProductCard = ({ data }: PdoductCardProps) => {
             <div className="flex items-center">
             </div>
           </div>
-          <a
-            href="#"
+          <Link
+            href={`/product/${data.id}`}
             className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +86,7 @@ const ProductCard = ({ data }: PdoductCardProps) => {
               />
             </svg>
             More Info
-          </a>
+            </Link>
         </div>
       </div>
     </div>
