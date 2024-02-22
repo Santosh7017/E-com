@@ -34,7 +34,7 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
           <div
             className="absolute
     rounded-md
-    shadow-md w-[170px]
+    shadow-md w-[201px]
     bg-white overflow-hidden right-0 top-12 text-sm flex
     flex-col cursor-pointer
     "
@@ -44,9 +44,11 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
                 <Link href="/orders">
                   <MenuItems onclick={toggleOpen}>Your Orders</MenuItems>
                 </Link>
+                { currentUser.role == "ADMIN"?(
                 <Link href="/admin">
                   <MenuItems onclick={toggleOpen}>Admin Dashboard</MenuItems>
-                </Link>
+                </Link>):null
+                }
                 <hr />
                 <MenuItems
                   onclick={() => {

@@ -48,13 +48,123 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
 
   
 
+  // const columns: GridColDef[] = [
+  //   { field: "id", headerName: "ID", width: 220 },
+  //   { field: "customer", headerName: "Customer Name", width: 130 },
+  //   {
+  //     field: "amount",
+  //     headerName: "Amount(INR)",
+  //     width: 130,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="font-bold text-slate-800">{params.row.amount}</div>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: "paymentStatus",
+  //     headerName: "Payment Status",
+  //     width: 130,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div>
+  //           {params.row.paymentStatus === "pending" ? (
+  //             <Status
+  //               text="pending"
+  //               icon={MdAccessTimeFilled}
+  //               bg="bg-slate-200"
+  //               color="text-slate-700"
+  //             />
+  //           ) : params.row.paymentStatus === "completed" ? (
+  //             <Status
+  //               text="completed"
+  //               icon={MdDone}
+  //               bg="bg-purple-200"
+  //               color="text-purple-700"
+  //             />
+  //           ) : (
+  //             <></>
+  //           )}
+  //         </div>
+  //       );
+  //     },
+  //   },
+
+  //   {
+  //     field: "deliveryStatus",
+  //     headerName: "Delivery Status",
+  //     width: 130,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div>
+  //           {params.row.deliveryStatus === "pending" ? (
+  //             <Status
+  //               text="pending"
+  //               icon={MdAccessTimeFilled}
+  //               bg="bg-slate-200"
+  //               color="text-slate-700"
+  //             />
+  //           ) : params.row.deliveryStatus === "dispatched" ? (
+  //             <Status
+  //               text="dispatched"
+  //               icon={MdDeliveryDining}
+  //               bg="bg-purple-200"
+  //               color="text-purple-700"
+  //             />
+  //           ) : params.row.deliveryStatus === "delivered" ? (
+  //             <Status
+  //               text="delivered"
+  //               icon={MdDeliveryDining}
+  //               bg="bg-green-200"
+  //               color="text-green-700"
+  //             />
+  //           ) : (
+  //             <></>
+  //           )}
+  //         </div>
+  //       );
+  //     },
+  //   },
+    
+  //   {
+  //     field: "date",
+  //     headerName: "Date",
+  //     width: 130,
+  //   },
+  //   {
+  //     field: "actions",
+  //     headerName: "Actions",
+  //     width: 200,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="flex justify-between gap-4 w-full">
+  //           <ActionBtn
+  //             icon={MdDeliveryDining}
+  //             onclick={() => handleDispatch(params.row.id)}
+  //           />
+  //           <ActionBtn
+  //             icon={MdDone}
+  //             onclick={() => handleDeliver(params.row.id)}
+  //           />
+  //           <ActionBtn
+  //             icon={MdRemoveRedEye}
+  //             onclick={() => {
+  //               router.push(`/order/${params.row.id}`);
+  //             }}
+  //           />
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
+
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "id", headerName: "ID", flex: 1 },
+    { field: "customer", headerName: "Customer Name", flex: 1 },
     {
       field: "amount",
       headerName: "Amount(INR)",
-      width: 130,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="font-bold text-slate-800">{params.row.amount}</div>
@@ -64,7 +174,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
     {
       field: "paymentStatus",
       headerName: "Payment Status",
-      width: 130,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div>
@@ -89,11 +199,10 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
         );
       },
     },
-
     {
       field: "deliveryStatus",
       headerName: "Delivery Status",
-      width: 130,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div>
@@ -125,16 +234,15 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
         );
       },
     },
-    
     {
       field: "date",
       headerName: "Date",
-      width: 130,
+      flex: 1,
     },
     {
       field: "actions",
       headerName: "Actions",
-      width: 200,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="flex justify-between gap-4 w-full">
@@ -190,12 +298,31 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
       });
   }, []);
 
+  // return (
+  //   <div className="max-w-[1150p] mb-auto text-xl">
+  //     <div className="mb-4 mt-8">
+  //       <Heading title="Manage Orders" center />
+  //     </div>
+  //     <div style={{ height: 600, width: "100%" }}>
+  //       <DataGrid
+  //         rows={rows}
+  //         columns={columns}
+  //         initialState={{
+  //           pagination: {
+  //             paginationModel: { page: 0, pageSize: 10 },
+  //           },
+  //         }}
+  //         pageSizeOptions={[10, 20]}
+  //       />
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="max-w-[1150p] mb-auto text-xl">
+    <div className="max-w-full mb-auto text-xl">
       <div className="mb-4 mt-8">
         <Heading title="Manage Orders" center />
       </div>
-      <div style={{ height: 600, width: "100%" }}>
+      <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -209,6 +336,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
       </div>
     </div>
   );
+
 };
 
 export default ManageOrdersClient;

@@ -13,7 +13,6 @@ interface PdoductCardProps {
 }
 
 
-// ! design 2
 const ProductCard = ({ data }: PdoductCardProps) => {
   const router = useRouter();
   const { handleAddProductCart, cartProducts } = useCart();

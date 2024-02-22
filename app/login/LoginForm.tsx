@@ -67,57 +67,108 @@ const LoginForm: React.FC<currentUser> = ({ currentUser }) => {
 
   }
   return (
-    <>
-      <Heading title="Sign In for E-shop" />
-      <Button
-        outlined
-        label="Continue with Google"
-        Icon={AiOutlineGoogle}
-        onclick={() => {
-          signIn("google");
-        }}
-      />
-      <hr className="bg-slate-300 w-full h-px" />
+    // <>
+    //   <Heading title="Sign In for E-shop" />
+    //   <Button
+    //     outlined
+    //     label="Continue with Google"
+    //     Icon={AiOutlineGoogle}
+    //     onclick={() => {
+    //       signIn("google");
+    //     }}
+    //   />
+    //   <hr className="bg-slate-300 w-full h-px" />
 
+    //   <Input
+    //     id="email"
+    //     label="Email"
+    //     disabled={isLoading}
+    //     register={register}
+    //     errors={errors}
+    //     type="email"
+    //     required
+    //   />
+    //   <div className="w-full h-24">
+    //     <Input
+    //       id="password"
+    //       label="Password"
+    //       disabled={isLoading}
+    //       register={register}
+    //       errors={errors}
+    //       type="password"
+    //       required
+    //     />
+    //     <p className="text-md">
+    //       <Link className=" absolute right-96 mr-12 mt-3 mb-3" href="/reset">
+    //         Forgot Password
+    //       </Link>
+    //     </p>
+    //   </div>
+
+    //   <div style={{ width: "30vw" }}>
+    //     <Button
+    //       label={isLoading ? "Loading" : "Loign"}
+    //       onclick={handleSubmit(onSubmit)}
+    //     />
+    //   </div>
+    //   <p className="text-sm">
+    //     Do not have an account?{" "}
+    //     <Link className="underline" href="/register">
+    //       Signup
+    //     </Link>
+    //   </p>
+    // </>
+    <>
+    <Heading title="Sign In for E-shop" />
+    <Button
+      outlined
+      label="Continue with Google"
+      Icon={AiOutlineGoogle}
+      onclick={() => {
+        signIn("google");
+      }}
+    />
+    <hr className="bg-slate-300 w-full h-px" />
+
+    <Input
+      id="email"
+      label="Email"
+      disabled={isLoading}
+      register={register}
+      errors={errors}
+      type="email"
+      required
+    />
+    <div className="w-full h-24 flex flex-col justify-between">
       <Input
-        id="email"
-        label="Email"
+        id="password"
+        label="Password"
         disabled={isLoading}
         register={register}
         errors={errors}
-        type="email"
+        type="password"
         required
       />
-      <div className="w-full h-24">
-        <Input
-          id="password"
-          label="Password"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          type="password"
-          required
-        />
-        <p className="text-md">
-          <Link className=" absolute right-96 mr-12 mt-3 mb-3" href="/reset">
-            Forgot Password
-          </Link>
-        </p>
-      </div>
-
-      <div style={{ width: "30vw" }}>
-        <Button
-          label={isLoading ? "Loading" : "Loign"}
-          onclick={handleSubmit(onSubmit)}
-        />
-      </div>
-      <p className="text-sm">
-        Do not have an account?{" "}
-        <Link className="underline" href="/register">
-          Signup
+      <p className="text-md self-end">
+        <Link href="/reset">
+          Forgot Password
         </Link>
       </p>
-    </>
+    </div>
+
+    <div style={{ width: "30vw" }}>
+      <Button
+        label={isLoading ? "Loading" : "Loign"}
+        onclick={handleSubmit(onSubmit)}
+      />
+    </div>
+    <p className="text-sm">
+      Do not have an account?{" "}
+      <Link className="underline" href="/register">
+        Signup
+      </Link>
+    </p>
+  </>
   );
 };
 

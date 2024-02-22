@@ -42,27 +42,51 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    axios
-      .post("/api/register", data)
-      .then(() => {
-        toast.success("Account Created");
-        signIn("credentials", {
-          email: data.email,
-          password: data.password,
-          redirect: false,
-        }).then((callback) => {
-          if (callback?.ok) {
-            router.push("/cart");
-            router.refresh();
-            toast.success("Logged In");
-          }
-          if (callback?.error) {
-            toast.error(callback.error);
-          }
-        });
-      })
-      .catch(() => toast.error("Something went wrong"))
-      .finally(() => setIsLoading(false));
+    const { password, email } = data;
+    const requirements = [
+      // Must be at least 8 characters
+      password.length >= 8,
+      // Must contain at least 1 uppercase letter
+      /[A-Z]/.test(password),
+      // Must contain at least 1 lowercase letter
+      /[a-z]/.test(password),
+      // Must contain at least 1 number
+      /\d/.test(password),
+       // Email format check
+       /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.com$/.test(email)
+
+    ];
+
+    // If all requirements are met, password is valid
+    const isValid = requirements.every(Boolean);
+
+    if (isValid) {
+      axios
+        .post("/api/register", data)
+        .then(() => {
+          toast.success("Account Created");
+          signIn("credentials", {
+            email: data.email,
+            password: data.password,
+            redirect: false,
+          }).then((callback) => {
+            if (callback?.ok) {
+              router.push("/cart");
+              router.refresh();
+              toast.success("Logged In");
+            }
+            if (callback?.error) {
+              toast.error(callback.error);
+            }
+          });
+        })
+        .catch(() => toast.error("Email already present"))
+        .finally(() => setIsLoading(false));
+    } else {
+      toast.error("Enter a valid Email or password");
+      setIsLoading(false);
+      return null;
+    }
   };
 
   if (currentUser) {
@@ -76,7 +100,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
         outlined
         label="Continue with Google"
         Icon={AiOutlineGoogle}
-        onclick={() => {signIn('google')}}
+        onclick={() => {
+          signIn("google");
+        }}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
@@ -98,7 +124,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       />
       <Input
         id="password"
-        label="Password"
+        label="Password: 8 characters 1 UpperCase 1 LowerCase and 1 Digit"
         disabled={isLoading}
         register={register}
         errors={errors}

@@ -38,7 +38,7 @@ model User {
   accounts       Account[]
   orders         Order[]
   reviews        Review[]
-  verifytoken    String?  @unique @default("")
+  verifytoken    String?   @unique 
 }
 
 model Order {

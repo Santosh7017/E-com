@@ -44,25 +44,90 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     });
   }
 
+  // const columns: GridColDef[] = [
+  //   { field: "id", headerName: "ID", width: 270 },
+  //   { field: "name", headerName: "Name", width: 270 },
+  //   {
+  //     field: "price",
+  //     headerName: "Price(INR)",
+  //     width: 170,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="font-bold text-slate-800">{params.row.price}</div>
+  //       );
+  //     },
+  //   },
+  //   { field: "category", headerName: "Category", width: 170 },
+  //   { field: "brand", headerName: "Brand", width: 120 },
+  //   {
+  //     field: "inStock",
+  //     headerName: "inStock",
+  //     width: 160,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div>
+  //           {params.row.inStock === true ? (
+  //             <Status
+  //               text="in stock"
+  //               icon={MdDone}
+  //               bg="bg-teal-200"
+  //               color="text-teal-700"
+  //             />
+  //           ) : (
+  //             <Status
+  //               text="out of stock"
+  //               icon={MdClose}
+  //               bg="bg-rose-200"
+  //               color="text-rose-700"
+  //             />
+  //           )}
+  //         </div>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: "actions",
+  //     headerName: "Actions",
+  //     width: 200,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="flex justify-between gap-4 w-full">
+  //           <ActionBtn
+  //             icon={MdCached}
+  //             onclick={() =>
+  //               handleToggleStock(params.row.id, params.row.inStock)
+  //             }
+  //           />
+  //           <ActionBtn icon={MdDelete} onclick={() => handleDelete(params.row.id, params.row.images)} />
+  //           <ActionBtn icon={MdRemoveRedEye} onclick={() => {
+  //             router.push(`product/${params.row.id}`);
+  //           }} />
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
+
+
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
-    { field: "name", headerName: "Name", width: 220 },
+    { field: "id", headerName: "ID", flex: 1 },
+    { field: "name", headerName: "Name", flex: 1 },
     {
       field: "price",
       headerName: "Price(INR)",
-      width: 100,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="font-bold text-slate-800">{params.row.price}</div>
         );
       },
     },
-    { field: "category", headerName: "Category", width: 100 },
-    { field: "brand", headerName: "Brand", width: 100 },
+    { field: "category", headerName: "Category", flex: 1 },
+    { field: "brand", headerName: "Brand", flex: 1 },
     {
       field: "inStock",
       headerName: "inStock",
-      width: 120,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div>
@@ -88,10 +153,10 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     {
       field: "actions",
       headerName: "Actions",
-      width: 200,
+      flex: 1,
       renderCell: (params) => {
         return (
-          <div className="flex justify-between gap-4 w-full">
+          <div className="flex justify-between  w-full">
             <ActionBtn
               icon={MdCached}
               onclick={() =>
@@ -150,12 +215,13 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     })
   }, []);
 
+  
   return (
-    <div className="max-w-[1150p] mb-auto text-xl">
+    <div className="max-w-full mb-auto text-xl">
       <div className="mb-4 mt-8">
         <Heading title="Manage Products" center />
       </div>
-      <div style={{ height: 600, width: "100%" }}>
+      <div style={{ height: '100%', width: '100%' }}>
         <DataGrid
           rows={rows}
           columns={columns}
