@@ -2,6 +2,7 @@
 
 import prisma from "@/libs/prismadb";
 import bcrypt from 'bcrypt';
+import { nanoid } from "nanoid";
 import {redirect} from "next/navigation";
 
 
@@ -9,6 +10,7 @@ export async function updatePassword({password, token}: {password:string, token:
    
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const random = nanoid(16);
     const user = await prisma.user.findUnique({
         where: {
             verifytoken: token
@@ -25,7 +27,7 @@ export async function updatePassword({password, token}: {password:string, token:
         },
         data: {
             hashedPassword: hashedPassword,
-            verifytoken: ""
+            verifytoken: random
         }
     });
     redirect("/login");
