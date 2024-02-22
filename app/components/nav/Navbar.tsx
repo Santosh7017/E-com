@@ -19,7 +19,7 @@ const Navbar = async () => {
           <Container >
             <div className="flex items-center justify-between gap-3 md:gap-0">
               <Link href='/' className={`${redressed.className} font-bold text-2xl`}>
-                E-com
+                Digi-Shop
               </Link>
                <div className=" md:block"><SearchBar /></div>
                <div className="flex items-center gap-8 md:gap-12 ">
