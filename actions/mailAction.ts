@@ -24,7 +24,7 @@ export async function mailAction({ email }: { email: string }) {
   const htmlBody = `Click here to <a href="http://localhost:3000/reset-password/${token}">Reset</a> Password`;
   try {
     const info = await transporter.sendMail({
-      from: "smorya994@gmail.com", 
+      from: process.env.SENDER, 
       to: email, 
       subject: "Password Reset", 
       text: "Hello world?", 

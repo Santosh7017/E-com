@@ -44,69 +44,6 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     });
   }
 
-  // const columns: GridColDef[] = [
-  //   { field: "id", headerName: "ID", width: 270 },
-  //   { field: "name", headerName: "Name", width: 270 },
-  //   {
-  //     field: "price",
-  //     headerName: "Price(INR)",
-  //     width: 170,
-  //     renderCell: (params) => {
-  //       return (
-  //         <div className="font-bold text-slate-800">{params.row.price}</div>
-  //       );
-  //     },
-  //   },
-  //   { field: "category", headerName: "Category", width: 170 },
-  //   { field: "brand", headerName: "Brand", width: 120 },
-  //   {
-  //     field: "inStock",
-  //     headerName: "inStock",
-  //     width: 160,
-  //     renderCell: (params) => {
-  //       return (
-  //         <div>
-  //           {params.row.inStock === true ? (
-  //             <Status
-  //               text="in stock"
-  //               icon={MdDone}
-  //               bg="bg-teal-200"
-  //               color="text-teal-700"
-  //             />
-  //           ) : (
-  //             <Status
-  //               text="out of stock"
-  //               icon={MdClose}
-  //               bg="bg-rose-200"
-  //               color="text-rose-700"
-  //             />
-  //           )}
-  //         </div>
-  //       );
-  //     },
-  //   },
-  //   {
-  //     field: "actions",
-  //     headerName: "Actions",
-  //     width: 200,
-  //     renderCell: (params) => {
-  //       return (
-  //         <div className="flex justify-between gap-4 w-full">
-  //           <ActionBtn
-  //             icon={MdCached}
-  //             onclick={() =>
-  //               handleToggleStock(params.row.id, params.row.inStock)
-  //             }
-  //           />
-  //           <ActionBtn icon={MdDelete} onclick={() => handleDelete(params.row.id, params.row.images)} />
-  //           <ActionBtn icon={MdRemoveRedEye} onclick={() => {
-  //             router.push(`product/${params.row.id}`);
-  //           }} />
-  //         </div>
-  //       );
-  //     },
-  //   },
-  // ];
 
 
   const columns: GridColDef[] = [
