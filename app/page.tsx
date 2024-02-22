@@ -13,10 +13,25 @@ interface HomePageProps {
 export default async function Home({searchParams}: HomePageProps) {
 
   
-  const products = await getProducts(searchParams);
-  if(products?.length === 0){
-      return <NullData title="!! No Products Found. Click all To Clear Filter" />
+  // const products = await getProducts(searchParams);
+  // if(products?.length === 0){
+  //     return <NullData title="!! No Products Found. Click all To Clear Filter" />
+  // }
+ let products: any[] = [];
+  try {
+    products = await getProducts(searchParams) || [];
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    products = [];
   }
+  if (!products) {
+    products = [];
+  }
+
+  if(products.length === 0){
+    return <NullData title="!! No Products Found. Click all To Clear Filter" />
+  }
+
   //shuffler products
   function shuffler(array: any) {
     for(let i = array.length -1;i>0;i--){
