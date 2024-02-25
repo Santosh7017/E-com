@@ -2,12 +2,15 @@
 
 import { useCallback, useState } from "react";
 import Avatar from "../products/Avatar";
-import { AiFillCaretDown } from "react-icons/ai";
+import { AiFillCaretDown, AiOutlineUserAdd } from "react-icons/ai";
 import Link from "next/link";
 import MenuItems from "./MenuItems";
 import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
 import { safeUser } from "@/types";
+import { BsFillGearFill } from "react-icons/bs";
+import { FaShoppingBag } from "react-icons/fa";
+import { TbLogin2 } from "react-icons/tb";
 
 interface currentUserProps {
   currentUser: safeUser | null;
@@ -42,13 +45,19 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
             {currentUser ? (
               <div>
                 <Link href="/orders">
-                  <MenuItems onclick={toggleOpen}>Your Orders</MenuItems>
+                <div className="flex items-center">
+                <FaShoppingBag className="mr-[0.15rem] ml-[0.5rem]" />
+                <MenuItems onclick={toggleOpen}>Your Orders</MenuItems>
+                  </div>
                 </Link>
-                { currentUser.role == "ADMIN"?(
-                <Link href="/admin">
-                  <MenuItems onclick={toggleOpen}>Admin Dashboard</MenuItems>
-                </Link>):null
-                }
+                {currentUser.role == "ADMIN" ? (
+                  <Link href="/admin">
+                    <div className="flex items-center">
+                      <BsFillGearFill className="mr-[0.15rem] ml-[0.5rem]" />
+                      <MenuItems onclick={toggleOpen}>Admin Dashboard</MenuItems>
+                    </div>
+                  </Link>
+                ) : null}
                 <hr />
                 <MenuItems
                   onclick={() => {
@@ -62,10 +71,16 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
             ) : (
               <div>
                 <Link href="/login">
+                <div className="flex items-center">
+              <TbLogin2 className="mr-[0.15rem] ml-[0.5rem]" />
                   <MenuItems onclick={toggleOpen}>Login</MenuItems>
+                </div>
                 </Link>
                 <Link href="/register">
+                <div className="flex items-center">
+              <AiOutlineUserAdd  className="mr-[0.15rem] ml-[0.5rem] text-[15px]"  />
                   <MenuItems onclick={toggleOpen}>Register</MenuItems>
+                </div>
                 </Link>
               </div>
             )}

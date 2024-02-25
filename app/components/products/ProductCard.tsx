@@ -7,11 +7,14 @@ import { Rating } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { BsSuitHeartFill } from "react-icons/bs";
+import { FaShoppingCart } from "react-icons/fa";
+import { GiReturnArrow } from "react-icons/gi";
+import { MdOutlineLabelImportant } from "react-icons/md";
 
 interface PdoductCardProps {
   data: any;
 }
-
 
 const ProductCard = ({ data }: PdoductCardProps) => {
   const router = useRouter();
@@ -21,72 +24,55 @@ const ProductCard = ({ data }: PdoductCardProps) => {
     data.reviews.length;
 
   return (
-    <div>
-      <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-        <div
-          className="relative mx-3 mt-3 flex h-60
-           overflow-hidden rounded-xl transition
-           cursor-pointer
-           "
-          onClick={()=> router.push(`/product/${data.id}`)}
-        >
+    <div className="w-auto m-5 relative group mb-4 shadow-md ">
+      <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
+        <div className=" md:min-h-56 sm:min-h-32" >
           <Image
-            fill
-            className="object-cover"
+            className="w-full h-full"
             src={data.images[0].image}
-            alt="product image"
-          />
-          <span className="absolute top-0 left-0 m-2 rounded-full  px-2 text-center text-sm font-medium text-white">
-            <Rating
-              value={productRating}
-              readOnly
-              precision={0.5}
-              className=""
-            />
-          </span>
-        </div>
-        <div className="mt-4 px-5 pb-5">
-          <div onClick={()=> router.push(`/product/${data.id}`)} 
-          className="cursor-pointer"
-          >
-            <h5 className="text-xl tracking-tight text-slate-900">
-              {truncateText(data.name)}
-            </h5>
-          </div>
-          <div className="mt-2 mb-5 flex items-center justify-between">
-            <p>
-              <span className="text-3xl font-bold text-slate-900">
-                {formatPrice(data.price)}
-              </span>
-              <span className="text-sm text-slate-900 line-through">
-                {formatPrice(data.price + 100)}
-              </span>
-            </p>
-            <div className="flex items-center">
-            </div>
-          </div>
-          <Link
-            href={`/product/${data.id}`}
-            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            alt="Product"
             
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            More Info
-            </Link>
+            height={100}
+            width={200}
+            quality={100}
+          />
         </div>
+        <div className="w-full h-24 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
+            <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
+              Add to Cart
+              <span>
+                <FaShoppingCart />
+              </span>
+            </li>
+            <li
+              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              onClick={() => router.push(`/product/${data.id}`)}
+            >
+              View Details
+              <span className="text-lg">
+                <MdOutlineLabelImportant />
+              </span>
+            </li>
+          </ul>
+        </div>
+        <span className="absolute top-0 left-0 m-2 rounded-full  px-2 text-center text-sm font-medium text-white">
+        <Rating  value={productRating} readOnly precision={0.5} className="" />
+          
+        </span>
+      </div>
+      <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
+        <p className="text-[#767676] text-[14px]"> {data.category}</p>
+        <div className="flex items-center justify-between font-titleFont">
+          <h2 className="text-lg text-primeColor font-bold mr-2">
+            {truncateText(data.name)}
+          </h2>
+          <p className="text-[#767676] text-[14px]">
+            {" "}
+            {formatPrice(data.price)}
+          </p>
+        </div>
+        
       </div>
     </div>
   );

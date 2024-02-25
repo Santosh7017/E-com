@@ -9,6 +9,8 @@ export default async function getProducts(params: IProductParams) {
   try {
     const { category, searchTerm } = params;
     let searchString = searchTerm;
+    console.log("searchTerm", searchString);
+    
     if (!searchString) {
       searchString = "";
     }
@@ -26,10 +28,14 @@ export default async function getProducts(params: IProductParams) {
               contains: searchString,
               mode: "insensitive",
             },
+          },
+          {
             description: {
               contains: searchString,
               mode: "insensitive",
             },
+          },
+          {
             category:{
               contains: searchString,
               mode: "insensitive",
@@ -48,6 +54,8 @@ export default async function getProducts(params: IProductParams) {
         },
       },
     });
+    console.log("products", products);
+    
     return products;
   } catch (error: any) {}
 }

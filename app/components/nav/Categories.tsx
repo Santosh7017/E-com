@@ -17,8 +17,8 @@ const Categories = () => {
     <div className="bg-white">
       <Container>
         <div
-          className="pt-4 flex flex-row 
-        items-center justify-between overflow-x-auto"
+          className="pt-4 flex flex-row px-5
+        items-center justify-between overflow-x-auto sm:gap-6" 
         >
           {categories.map((item) => (
             <Category
