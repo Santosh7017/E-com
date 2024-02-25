@@ -99,7 +99,7 @@ const AddProductForm = () => {
                 (snapshot) => {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is" + progress + "%done");
+                toast.success("Uploading is " + progress + " %done");
                   switch (snapshot.state) {
                     case "paused":
                       console.log("Uploa is paused");
