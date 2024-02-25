@@ -56,7 +56,6 @@ const AddProductForm = () => {
     },
   });
   const router = useRouter();
- 
 
   useEffect(() => {
     setCustomvalue("images", images);
@@ -70,7 +69,6 @@ const AddProductForm = () => {
   }, [isProductCreated]);
 
   const onsubmit: SubmitHandler<FieldValues> = async (data) => {
-    
     // ! upload images to firebase
 
     // ? add to mongodb
@@ -135,26 +133,36 @@ const AddProductForm = () => {
             });
           }
         }
+        return true;
       } catch (error) {
         setIsLoading(false);
         console.log("Image upload failed ", error);
-        return toast.error("Error handling image upload");
+        toast.error("Error in uploading Image please try again");
+       return false;
       }
     };
-    await handleImageUploads();
+    let imageUploaded = await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
-    axios.post('/api/product', productData).then(() => {
-      toast.success('Product Created');
-      setIsProductCreated(true);
-      setIsLoading(false);
-      router.refresh();
-    }).catch((error) => {
-      toast.error('Error creating product');
-     
-      console.log('Error creating product', error);
-    }).finally(() => {
-        setIsLoading(false); 
-    })
+    if(imageUploaded){
+    axios
+      .post("/api/product", productData)
+      .then(() => {
+        toast.success("Product Created");
+        setIsProductCreated(true);
+        setIsLoading(false);
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Error creating product");
+
+        console.log("Error creating product", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+    }else {
+      return;
+    }
   };
 
   const setCustomvalue = (id: string, value: any) => {
