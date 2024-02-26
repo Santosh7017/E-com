@@ -28,7 +28,7 @@ const ProductCard = ({ data }: PdoductCardProps) => {
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
         <div className=" flex justify-center md:min-h-56 sm:min-h-32" >
           <Image
-            className="w-full h-full max-h-56 max-w-56"
+            className="w-full h-full max-h-56 max-w-80 "
             src={data.images[0].image}
             alt="Product"
             
