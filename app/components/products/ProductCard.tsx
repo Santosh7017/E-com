@@ -25,13 +25,12 @@ const ProductCard = ({ data }: PdoductCardProps) => {
 
   return (
     <div className="w-auto m-5 relative group mb-4 shadow-md ">
-      <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
-        <div className=" flex justify-center md:min-h-56 sm:min-h-32" >
+      <div className={`max-w-80 max-h-80 relative overflow-y-hidden ${data.category === "Phone"?'flex justify-center': ""}`}>
+        <div className={ `flex justify-center md:min-h-56 sm:min-h-32  ${data.category === "Phone"?'w-[76%]': ""}`}>
           <Image
             className="w-full h-full max-h-56 max-w-80 "
             src={data.images[0].image}
             alt="Product"
-            
             height={100}
             width={200}
             quality={100}
@@ -57,8 +56,7 @@ const ProductCard = ({ data }: PdoductCardProps) => {
           </ul>
         </div>
         <span className="absolute top-0 left-0 m-2 rounded-full  px-2 text-center text-sm font-medium text-white">
-        <Rating  value={productRating} readOnly precision={0.5} className="" />
-          
+          <Rating value={productRating} readOnly precision={0.5} className="" />
         </span>
       </div>
       <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
@@ -72,7 +70,6 @@ const ProductCard = ({ data }: PdoductCardProps) => {
             {formatPrice(data.price)}
           </p>
         </div>
-        
       </div>
     </div>
   );

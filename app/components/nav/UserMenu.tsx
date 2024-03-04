@@ -45,14 +45,14 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
             {currentUser ? (
               <div>
                 <Link href="/orders">
-                <div className="flex items-center">
+                <div className="flex items-center  hover:bg-neutral-100 transition">
                 <FaShoppingBag className="mr-[0.15rem] ml-[0.5rem]" />
                 <MenuItems onclick={toggleOpen}>Your Orders</MenuItems>
                   </div>
                 </Link>
                 {currentUser.role == "ADMIN" ? (
                   <Link href="/admin">
-                    <div className="flex items-center">
+                    <div className="flex items-center  hover:bg-neutral-100 transition">
                       <BsFillGearFill className="mr-[0.15rem] ml-[0.5rem]" />
                       <MenuItems onclick={toggleOpen}>Admin Dashboard</MenuItems>
                     </div>
@@ -71,13 +71,13 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
             ) : (
               <div>
                 <Link href="/login">
-                <div className="flex items-center">
+                <div className="flex items-center  hover:bg-neutral-100 transition">
               <TbLogin2 className="mr-[0.15rem] ml-[0.5rem]" />
                   <MenuItems onclick={toggleOpen}>Login</MenuItems>
                 </div>
                 </Link>
                 <Link href="/register">
-                <div className="flex items-center">
+                <div className="flex items-center  hover:bg-neutral-100 transition">
               <AiOutlineUserAdd  className="mr-[0.15rem] ml-[0.5rem] text-[15px]"  />
                   <MenuItems onclick={toggleOpen}>Register</MenuItems>
                 </div>
