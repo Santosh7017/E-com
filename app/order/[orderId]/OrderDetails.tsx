@@ -11,8 +11,9 @@ import OrderItem from "./OrderItem";
 
 interface OrderDetailsProps {
   Order: Order;
+  userName: string;
 }
-const OrderDetails: React.FC<OrderDetailsProps> = ({ Order }) => {
+const OrderDetails: React.FC<OrderDetailsProps> = ({ Order, userName }) => {
   return (
     <div
       className=" m-auto 
@@ -22,9 +23,10 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ Order }) => {
         <Heading title="Order Details" />
       </div>
       <div>Order ID: {Order.id}</div>
+      <div>User Name: {" " + userName}</div>
       <div>
-        Total Amount:{" "}
-        <span className="font-bold">{formatPrice(Order.amount/100)} </span>
+        Total Order Amount:{" "}
+        <span className="font-bold">{formatPrice(Order.amount / 100)} </span>
       </div>
       <div className="flex gap-2 items-center">
         <div>Payment Status: </div>
@@ -78,20 +80,23 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ Order }) => {
           )}
         </div>
       </div>
-     
-        Date: {moment(Order.createdDate).fromNow()}
-        <div>
-          <h2 className="font-semibold mt-4 mb-2">Products ordered </h2>
-          <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
+
+      <div>Date: {moment(Order.createdDate).fromNow()}</div>
+      <div>Address: {Order.address?.line1+", "+Order.address?.city+ "("+ Order.address?.postal_code +")"+", "+ Order.address?.country}</div>
+
+      <div>
+        <h2 className="font-semibold mt-4 mb-2">Products ordered </h2>
+        <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
           <div className="col-span-2 justify-self-start">PRODUCT</div>
-          <div className=" justify-self-center">PRICE</div>
-          <div className=" justify-self-center">QTY</div>
-          <div className=" justify-self-end">Total</div>
+          <div className="justify-self-center">PRICE</div>
+          <div className="justify-self-center">QTY</div>
+          <div className="justify-self-end">Total</div>
         </div>
-        {Order.products && Order.products.map((item) => {
-          return <OrderItem key={item.id} item= {item}></OrderItem>
-        })}
-        </div>
+        {Order.products &&
+          Order.products.map((item) => {
+            return <OrderItem key={item.id} item={item}></OrderItem>;
+          })}
+      </div>
     </div>
   );
 };
