@@ -54,7 +54,7 @@ const HomeBanner = () => {
               transition: { duration: 0.7, ease: "backInOut" },
             }}
           >
-            UP TO 70% OFF
+            UP TO 50% OFF
           </motion.p>
         </motion.div>
         <motion.div
