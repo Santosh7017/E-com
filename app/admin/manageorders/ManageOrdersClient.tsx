@@ -139,12 +139,15 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ Orders }) => {
             <ActionBtn
               icon={MdDeliveryDining}
               onclick={() => handleDispatch(params.row.id)}
+              tooltip="Dispatch Order"
             />
             <ActionBtn
               icon={MdDone}
               onclick={() => handleDeliver(params.row.id)}
+              tooltip="Mark as Delivered"
             />
             <ActionBtn
+            tooltip="View Order Details"
               icon={MdRemoveRedEye}
               onclick={() => {
                 router.push(`/order/${params.row.id}`);

@@ -20,7 +20,6 @@ import { useRouter } from "next/navigation";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import firebaseApp from "@/libs/firebase";
 
-
 interface ManageProductsClientProps {
   products: Product[];
 }
@@ -43,8 +42,6 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       };
     });
   }
-
-
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1 },
@@ -96,14 +93,23 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
           <div className="flex justify-between  w-full">
             <ActionBtn
               icon={MdCached}
+              tooltip="Toggle Stock Status"
               onclick={() =>
                 handleToggleStock(params.row.id, params.row.inStock)
               }
             />
-            <ActionBtn icon={MdDelete} onclick={() => handleDelete(params.row.id, params.row.images)} />
-            <ActionBtn icon={MdRemoveRedEye} onclick={() => {
-              router.push(`product/${params.row.id}`);
-            }} />
+            <ActionBtn
+              tooltip="Delete Product"
+              icon={MdDelete}
+              onclick={() => handleDelete(params.row.id, params.row.images)}
+            />
+            <ActionBtn
+              tooltip="View Product"
+              icon={MdRemoveRedEye}
+              onclick={() => {
+                router.push(`product/${params.row.id}`);
+              }}
+            />
           </div>
         );
       },
@@ -143,22 +149,23 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       }
     };
     await handleImageDelete();
-    axios.delete(`/api/product/${id}`).then((res) => {
-      toast.success("Product status changed");
-      router.refresh();
-    }).catch((error) => {
-      console.log("Something went wrong in deleting");
-      
-    })
+    axios
+      .delete(`/api/product/${id}`)
+      .then((res) => {
+        toast.success("Product status changed");
+        router.refresh();
+      })
+      .catch((error) => {
+        console.log("Something went wrong in deleting");
+      });
   }, []);
 
-  
   return (
     <div className="max-w-full mb-auto text-xl">
       <div className="mb-4 mt-8">
         <Heading title="Manage Products" center />
       </div>
-      <div style={{ height: '100%', width: '100%' }}>
+      <div style={{ height: "100%", width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
