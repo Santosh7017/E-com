@@ -9,7 +9,7 @@ export default async function getProducts(params: IProductParams) {
   try {
     const { category, searchTerm } = params;
     let searchString = searchTerm;
-    console.log("searchTerm", searchString);
+    
     
     if (!searchString) {
       searchString = "";
@@ -54,7 +54,6 @@ export default async function getProducts(params: IProductParams) {
         },
       },
     });
-    console.log("products", products);
     
     return products;
   } catch (error: any) {}
