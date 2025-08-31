@@ -1,0 +1,43 @@
+name: Deployment Status
+
+on:
+  deployment_status:
+
+jobs:
+  deployment-status:
+    name: Deployment Status Notification
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success' || github.event.deployment_status.state == 'failure'
+    
+    steps:
+      - name: Deployment Success
+        if: github.event.deployment_status.state == 'success'
+        run: |
+          echo "🎉 Deployment successful!"
+          echo "Environment: ${{ github.event.deployment.environment }}"
+          echo "URL: ${{ github.event.deployment_status.target_url }}"
+
+      - name: Deployment Failure
+        if: github.event.deployment_status.state == 'failure'
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Environment: ${{ github.event.deployment.environment }}"
+          echo "Please check the logs for more details."
+          exit 1
+
+      - name: Update deployment status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: deployment } = await github.rest.repos.getDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: context.payload.deployment.id
+            });
+            
+            console.log('Deployment details:', {
+              environment: deployment.environment,
+              ref: deployment.ref,
+              sha: deployment.sha,
+              status: context.payload.deployment_status.state
+            });
